@@ -1,0 +1,27 @@
+class Solution {
+     private:
+    void dfs(int s,int d,vector<int>&visit,vector<int> adj[],int&ans)
+    {   visit[s]=1;
+        if(s==d)
+        {
+            ans++;
+            return;
+        }
+        for(auto it:adj[s])
+        {
+            if(visit[it]==0)
+            dfs(it,d,visit,adj,ans);
+              visit[it]=0;
+        }
+    }
+  public:
+ 
+    // Function to count paths between two vertices in a directed graph.
+    int countPaths(int V, vector<int> adj[], int source, int destination)
+    {   int ans=0;
+        // Code here
+        vector<int>visit(V,0);
+       dfs(source, destination,visit,adj,ans);
+       return ans;
+    }
+};

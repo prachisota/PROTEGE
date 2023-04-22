@@ -1,0 +1,25 @@
+class Solution
+{
+    public:
+    void solve(int i,vector<int>&A,vector<int>&output,vector<vector<int>>&ans)
+    {  // base condition
+        if(i>=A.size())
+      {  ans.push_back(output);return;}
+        //exclude
+        solve(i+1,A,output,ans);
+        //include
+        output.push_back(A[i]);
+        solve(i+1,A,output,ans);
+        output.pop_back();
+    }
+    vector<vector<int> > subsets(vector<int>& A)
+    {   
+         vector<vector<int>>ans;
+         vector<int>output;
+         int i=0;
+         solve(i,A,output,ans);
+         sort(ans.begin(),ans.end());
+         return ans;
+         
+    }
+};
